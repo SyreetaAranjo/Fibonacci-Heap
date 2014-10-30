@@ -1,4 +1,4 @@
 Fibonacci-Heap
 ==============
 
-Implementation of the Fibonacci Heaps algorithm
+Implementation of the Fibonacci Heaps algorithm.
