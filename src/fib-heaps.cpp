@@ -103,6 +103,7 @@ static void insertChild(Heap *h, Node *n, Node *p) {
 		n->right = p->child;
 		n->left->right = n;
 		n->right->left = n;
+		p->child = n;
 	}
 }
 
