@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstring>
 #include <stack>
+#include <cmath>
 
 struct Node {
 	int val;
@@ -27,7 +28,9 @@ struct Heap {
 // Creates a new heap, where the maximum number of nodes is n.
 Heap *createHeap(int n) {
 	Heap *h = new Heap();
-	h->consolidateSize = n;
+    
+    float phi = 1.618;
+    h->consolidateSize = 1 + std::floor(std::log(n)/std::log(phi));
 	h->rootSize = 0;
 	h->markedNodes = 0;
 	h->nodes = new Node[n];
@@ -168,8 +171,8 @@ void extractMin(Heap *h) {
 	Node* z = h->min;
 	if (z != NULL) {
 		// insert each child node in the root list
-		Node* c = z->child;
-		if (c != NULL) {
+		if (z->child != NULL) {
+            Node* c = z->child;
 			do {
 				Node *next = c->right;
 				insertRoot(h, c);
@@ -177,7 +180,6 @@ void extractMin(Heap *h) {
 			} while (c != z->child);
 			z->child = NULL;
 		}
-
 		removeRoot(h, z);
 		h->freeNodes.push(z);
 

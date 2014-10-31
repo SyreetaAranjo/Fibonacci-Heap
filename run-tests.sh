@@ -11,5 +11,11 @@ for i in $(ls -d tests/*/); do
 	rm out;
 done
 
+# Measure performance
+for i in $(ls -d tests/*/); do 
+	echo ${i};
+	time ./fib-heaps < ${i}/input > /dev/null;
+done
+
 # Delete executable
 rm fib-heaps;
